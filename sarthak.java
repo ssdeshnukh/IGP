@@ -8,13 +8,21 @@ d.	    a += i;
 e.	    i /= 2;
 f.	    arr.push_back(i);
 g.	}
-int a = 0, i = N;
-vector<int> arr;
-while (i > 0) {
-a += i;
-i /= 2;
-arr.push_back(i);
-}
+h.	#include <iostream>
+i.	#include <vector>
+j.	using namespace std;
+k.	
+l.	int main() {
+m.	    int a = 0, i = N;
+n.	    vector<int> arr;
+o.	    while (i > 0) {
+p.	        a += i;
+q.	        i /= 2;
+r.	        arr.push_back(i);
+s.	    }
+t.	    return 0;
+u.	}
+
 
 2.	Imagine you have a linked list that represents a series of tasks you need to complete. You want to know how many tasks are in your list so you can plan your day better. Given that the linked list is already built and you have access to its head node, how would you implement a function to calculate the total number of tasks in the list?
 
@@ -22,121 +30,78 @@ Write a pseudocode for a function called “lengthOfLinkedList(Node* head)”tha
 #include <iostream>
 using namespace std;
 
-// Definition of a singly linked list node
-struct Node {
-    string task;
-    Node* next;
-
-    Node(string t) : task(t), next(nullptr) {}
-};
-
-// Function to count the number of tasks in the linked list
-int countTasks(Node* head) {
-    int count = 0;
-    Node* current = head; // Start from the head node
-    while (current != nullptr) {
-        count++;            // Increment count for each node
-        current = current->next; // Move to the next node
-    }
-    return count;
-}
-
-// Function to add a task at the end of the linked list
-void appendTask(Node*& head, string task) {
-    Node* newNode = new Node(task);
-    if (head == nullptr) {
-        head = newNode;
-        return;
-    }
-    Node* temp = head;
-    while (temp->next != nullptr) {
-        temp = temp->next;
-    }
-    temp->next = newNode;
-}
-
-// Function to print tasks
-void printTasks(Node* head) {
-    Node* temp = head;
-    while (temp != nullptr) {
-        cout << temp->task << " -> ";
-        temp = temp->next;
-    }
-    cout << "NULL\n";
-}
-
-// Driver code
-int main() {
-    Node* head = nullptr;
-    
-    // Adding tasks to the list
-    appendTask(head, "Complete DSA assignment");
-    appendTask(head, "Prepare for meeting");
-    appendTask(head, "Go to the gym");
-    appendTask(head, "Read a book");
-
-    // Print tasks
-    printTasks(head);
-
-    // Count and display the number of tasks
-    cout << "Total number of tasks: " << countTasks(head) << endl;
-
-    return 0;
-}
+. #include <iostream>
+3.	using namespace std;
+4.	
+5.	struct Node {
+6.	    int data;
+7.	    Node* next;
+8.	    Node(int val) : data(val), next(nullptr) {}
+9.	};
+10.	
+11.	int lengthOfLinkedList(Node* head) {
+12.	    int count = 0;
+13.	    Node* current = head;
+14.	    while (current) {
+15.	        count++;
+16.	        current = current->next;
+17.	    }
+18.	    return count;
+19.	}
+20.	
+21.	int main() {
+22.	    Node* head = new Node(1);
+23.	    head->next = new Node(2);
+24.	    head->next->next = new Node(3);
+25.	    cout << lengthOfLinkedList(head);
+26.	    return 0;
+27.	}
 
 
 
 3.	Suppose you have a chain of people standing in a line, where each person holds the hand of the next person. You start at the first person and want to greet everyone in the line, but you can only move forward one person at a time. What would be the time complexity of this process, similar to traversing a linked list?
-#include <iostream>
+ next to nullptr
+    Person(string personName) : name(personName), next(nullptr) {}
+};#include <iostream>
 using namespace std;
 
-// Definition of a singly linked list node (Person in the line)
 struct Person {
     string name;
     Person* next;
-    
-    // Constructor to initialize the person's name and set next to nullptr
-    Person(string personName) : name(personName), next(nullptr) {}
+    Person(string n) : name(n), next(nullptr) {}
 };
 
-// Function to traverse the linked list and greet each person
 void greetEveryone(Person* head) {
-    Person* current = head; // Start at the first person
-    while (current != nullptr) {
-        cout << "Hello, " << current->name << "!" << endl; // Greet the person
-        current = current->next; // Move to the next person
+    Person* current = head;
+    while (current) {
+        cout << "Hello, " << current->name << "!" << endl;
+        current = current->next;
     }
 }
 
-// Function to add a new person to the end of the linked list
 void addPerson(Person*& head, string name) {
     Person* newPerson = new Person(name);
-    if (head == nullptr) {
+    if (!head) {
         head = newPerson;
         return;
     }
     Person* temp = head;
-    while (temp->next != nullptr) {
+    while (temp->next) {
         temp = temp->next;
     }
     temp->next = newPerson;
 }
 
-// Driver code
 int main() {
     Person* head = nullptr;
-
-    // Adding people to the line
     addPerson(head, "Alice");
     addPerson(head, "Bob");
     addPerson(head, "Charlie");
     addPerson(head, "David");
-
-    // Greet everyone in the line
     greetEveryone(head);
-
     return 0;
 }
+
 
 4.	Answer the following questions:
 a.	Can you find the length of a linked list?
@@ -153,26 +118,59 @@ struct Node {
     Node(int val) : data(val), next(nullptr) {}
 };
 
-// Function to find the length of a linked list
 int lengthOfLinkedList(Node* head) {
     int count = 0;
     Node* current = head;
-    while (current != nullptr) {
+    while (current) {
         count++;
         current = current->next;
     }
     return count;
 }
 
-// Driver code
-int main() {
-    Node* head = new Node(10);
-    head->next = new Node(20);
-    head->next->next = new Node(30);
+struct DoublyNode {
+    int data;
+    DoublyNode* next;
+    DoublyNode* prev;
+    DoublyNode(int val) : data(val), next(nullptr), prev(nullptr) {}
+};
 
-    cout << "Length of the linked list: " << lengthOfLinkedList(head) << endl;
-    return 0;
+void traverseBackward(DoublyNode* tail) {
+    while (tail) {
+        cout << tail->data << " ";
+        tail = tail->prev;
+    }
 }
+
+class Stack {
+    struct StackNode {
+        int data;
+        StackNode* next;
+        StackNode(int val) : data(val), next(nullptr) {}
+    };
+    StackNode* top;
+public:
+    Stack() : top(nullptr) {}
+    void push(int val) {
+        StackNode* newNode = new StackNode(val);
+        newNode->next = top;
+        top = newNode;
+    }
+    int pop() {
+        if (!top) return -1;
+        int val = top->data;
+        StackNode* temp = top;
+        top = top->next;
+        delete temp;
+        return val;
+    }
+};
+
+class AbstractDataType {
+public:
+    virtual void insert(int) = 0;
+    virtual int remove() =
+
 5.	Name two types of tree traversal techniques. Write two differences between the two techniques.
 #include <iostream>
 using namespace std;
@@ -184,23 +182,20 @@ struct Node {
     Node(int val) : data(val), left(nullptr), right(nullptr) {}
 };
 
-// Inorder Traversal (Left, Root, Right)
 void inorderTraversal(Node* root) {
-    if (root == nullptr) return;
+    if (!root) return;
     inorderTraversal(root->left);
     cout << root->data << " ";
     inorderTraversal(root->right);
 }
 
-// Postorder Traversal (Left, Right, Root)
-void postorderTraversal(Node* root) {
-    if (root == nullptr) return;
-    postorderTraversal(root->left);
-    postorderTraversal(root->right);
+void preorderTraversal(Node* root) {
+    if (!root) return;
     cout << root->data << " ";
+    preorderTraversal(root->left);
+    preorderTraversal(root->right);
 }
 
-// Driver code
 int main() {
     Node* root = new Node(1);
     root->left = new Node(2);
@@ -208,106 +203,107 @@ int main() {
     root->left->left = new Node(4);
     root->left->right = new Node(5);
 
-    cout << "Inorder Traversal: ";
     inorderTraversal(root);
     cout << endl;
-
-    cout << "Postorder Traversal: ";
-    postorderTraversal(root);
-    cout << endl;
-
+    preorderTraversal(root);
+    
     return 0;
 }
+
 6.	What is BFS? Explain with the help of an example.
 #include <iostream>
-#include <vector>
 #include <queue>
-
+#include <vector>
 using namespace std;
 
-// Function to perform BFS traversal
-void BFS(int startNode, vector<vector<int>>& adjList, vector<bool>& visited) {
-    queue<int> q;
-    q.push(startNode);
-    visited[startNode] = true;
+class Graph {
+    int V;
+    vector<vector<int>> adj;
+public:
+    Graph(int vertices) : V(vertices), adj(vertices) {}
 
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-        cout << node << " ";
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
 
-        // Traverse all adjacent nodes
-        for (int neighbor : adjList[node]) {
-            if (!visited[neighbor]) {
-                q.push(neighbor);
-                visited[neighbor] = true;
+    void BFS(int start) {
+        vector<bool> visited(V, false);
+        queue<int> q;
+        q.push(start);
+        visited[start] = true;
+
+        while (!q.empty()) {
+            int node = q.front();
+            q.pop();
+            cout << node << " ";
+            for (int neighbor : adj[node]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    q.push(neighbor);
+                }
             }
         }
     }
-}
+};
 
 int main() {
-    int n = 6; // Number of nodes
-    vector<vector<int>> adjList(n);
+    Graph g(7);
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 4);
+    g.addEdge(2, 5);
+    g.addEdge(3, 6);
 
-    // Creating an undirected graph
-    adjList[0] = {1, 2};
-    adjList[1] = {0, 3, 4};
-    adjList[2] = {0, 5};
-    adjList[3] = {1};
-    adjList[4] = {1};
-    adjList[5] = {2};
-
-    vector<bool> visited(n, false);
-
-    cout << "BFS Traversal starting from node 0: ";
-    BFS(0, adjList, visited);
-    cout << endl;
-
+    g.BFS(1);
     return 0;
 }
+
 7.	What is DFS? Explain with the help of an example.
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
-// Function to perform DFS traversal
-void DFS(int node, vector<vector<int>>& adjList, vector<bool>& visited) {
-    // Mark the node as visited and print it
-    visited[node] = true;
-    cout << node << " ";
+class Graph {
+    int V;
+    vector<vector<int>> adj;
+public:
+    Graph(int vertices) : V(vertices), adj(vertices) {}
 
-    // Traverse all adjacent nodes
-    for (int neighbor : adjList[node]) {
-        if (!visited[neighbor]) {
-            DFS(neighbor, adjList, visited);
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    void DFSUtil(int node, vector<bool>& visited) {
+        visited[node] = true;
+        cout << node << " ";
+        for (int neighbor : adj[node]) {
+            if (!visited[neighbor]) {
+                DFSUtil(neighbor, visited);
+            }
         }
     }
-}
+
+    void DFS(int start) {
+        vector<bool> visited(V, false);
+        DFSUtil(start, visited);
+    }
+};
 
 int main() {
-    int n = 6; // Number of nodes
-    vector<vector<int>> adjList(n);
+    Graph g(7);
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 4);
+    g.addEdge(2, 5);
+    g.addEdge(3, 6);
 
-    // Creating an undirected graph
-    adjList[0] = {1, 2};
-    adjList[1] = {0, 3, 4};
-    adjList[2] = {0, 5};
-    adjList[3] = {1};
-    adjList[4] = {1};
-    adjList[5] = {2};
-
-    vector<bool> visited(n, false);
-
-    cout << "DFS Traversal starting from node 0: ";
-    DFS(0, adjList, visited);
-    cout << endl;
-
+    g.DFS(1);
     return 0;
 }
+
 8.	What is an adjacency matrix? Give an example.
-8
 #include <iostream>
 using namespace std;
 
@@ -334,7 +330,6 @@ int main() {
     return 0;
 }
 9.	What is an adjacency list? Give an example.
-9
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -387,65 +382,73 @@ int main() {
 
 
 10.	Write the BFS traversal starting from 4 of the below given graph. Also write the DFS traversal for the below graph starting from 3.
- 10
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <stack>
-#include <unordered_map>
-
 using namespace std;
 
-// BFS Function
-void BFS(unordered_map<int, vector<int>> &graph, int start) {
-    queue<int> q;
-    unordered_map<int, bool> visited;
+class Graph {
+    int V;
+    vector<vector<int>> adj;
+public:
+    Graph(int vertices) : V(vertices), adj(vertices) {}
 
-    q.push(start);
-    visited[start] = true;
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
 
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-        cout << node << " ";
+    void BFS(int start) {
+        vector<bool> visited(V, false);
+        queue<int> q;
+        q.push(start);
+        visited[start] = true;
 
-        for (int neighbor : graph[node]) {
-            if (!visited[neighbor]) {
-                q.push(neighbor);
-                visited[neighbor] = true;
+        while (!q.empty()) {
+            int node = q.front();
+            q.pop();
+            cout << node << " ";
+            for (int neighbor : adj[node]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    q.push(neighbor);
+                }
             }
         }
     }
-}
 
-// DFS Function
-void DFS(unordered_map<int, vector<int>> &graph, int start, unordered_map<int, bool> &visited) {
-    cout << start << " ";
-    visited[start] = true;
-
-    for (int neighbor : graph[start]) {
-        if (!visited[neighbor]) {
-            DFS(graph, neighbor, visited);
+    void DFSUtil(int node, vector<bool>& visited) {
+        visited[node] = true;
+        cout << node << " ";
+        for (int neighbor : adj[node]) {
+            if (!visited[neighbor]) {
+                DFSUtil(neighbor, visited);
+            }
         }
     }
-}
+
+    void DFS(int start) {
+        vector<bool> visited(V, false);
+        DFSUtil(start, visited);
+    }
+};
 
 int main() {
-    unordered_map<int, vector<int>> graph = {
-        {1, {2, 3}}, {2, {4, 5}}, {3, {6}}, {4, {}}, {5, {}}, {6, {}}
-    };
+    Graph g(8);
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 4);
+    g.addEdge(2, 5);
+    g.addEdge(2, 6);
+    g.addEdge(3, 7);
 
-    cout << "BFS starting from 4: ";
-    BFS(graph, 4);
+    g.BFS(4);
     cout << endl;
-
-    cout << "DFS starting from 3: ";
-    unordered_map<int, bool> visited;
-    DFS(graph, 3, visited);
-    cout << endl;
+    g.DFS(3);
 
     return 0;
 }
+
 11.	Write the Best case, average case and worst case time complexity of the below algorithms:
 a.	Bubble Sort
 b.	Selection Sort
@@ -457,18 +460,89 @@ e.	Quick Sort
 #include <vector>
 using namespace std;
 
-// Function to print array
-void printArray(vector<int> &arr) {
-    for (int num : arr)
-        cout << num << " ";
-    cout << endl;
-}
-
-// Bubble Sort
-void bubbleSort(vector<int> &arr) {
+void bubbleSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n - 1; i++) {
-        bool swap
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1])
+                swap(arr[j], arr[j + 1]);
+        }
+    }
+}
+
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex])
+                minIndex = j;
+        }
+        swap(arr[i], arr[minIndex]);
+    }
+}
+
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; i++) {
+        int key = arr[i], j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void merge(vector<int>& arr, int l, int m, int r) {
+    int n1 = m - l + 1, n2 = r - m;
+    vector<int> L(n1), R(n2);
+    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+    for (int i = 0; i < n2; i++) R[i] = arr[m + 1 + i];
+    
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) arr[k++] = (L[i] <= R[j]) ? L[i++] : R[j++];
+    while (i < n1) arr[k++] = L[i++];
+    while (j < n2) arr[k++] = R[j++];
+}
+
+void mergeSort(vector<int>& arr, int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high], i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot)
+            swap(arr[++i], arr[j]);
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    vector<int> arr = {5, 2, 9, 1, 5, 6};
+    bubbleSort(arr);
+    selectionSort(arr);
+    insertionSort(arr);
+    mergeSort(arr, 0, arr.size() - 1);
+    quickSort(arr, 0, arr.size() - 1);
+    return 0;
+}
+
 12.	Explain how bubble sort works. Write the pseudocode/algorithm for bubble sort.
 12
 BubbleSort(arr, n):
